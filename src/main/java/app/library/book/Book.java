@@ -25,6 +25,10 @@ public class Book {
         return title;
     }
 
+    public long getBookid() {
+        return bookid;
+    }
+
     public void setTitle(String title) {
         this.title = title;
     }
