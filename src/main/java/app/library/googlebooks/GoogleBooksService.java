@@ -1,9 +1,7 @@
-package app.library.book.googlebooks;
+package app.library.googlebooks;
 
 import app.library.book.Book;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package app.library.book.googlebooks;
+package app.library.googlebooks;
 
 import java.util.HashMap;
 import java.util.Map;
