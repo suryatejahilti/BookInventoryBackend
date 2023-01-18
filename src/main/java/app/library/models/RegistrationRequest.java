@@ -1,26 +1,33 @@
 package app.library.models;
 
-public class AuthenticationRequest {
+import java.security.PrivateKey;
+
+public class RegistrationRequest {
     private String username;
+    private String name;
     private String password;
 
-    public AuthenticationRequest(String username, String password) {
+    public RegistrationRequest(String username, String name, String password) {
         this.username = username;
+        this.name = name;
         this.password = password;
     }
 
-    public AuthenticationRequest() {
-    }
-    public AuthenticationRequest(RegistrationRequest registrationRequest) {
-        this.username= registrationRequest.getUsername();
-        this.password=registrationRequest.getPassword();
-    }
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getPassword() {
@@ -30,6 +37,7 @@ public class AuthenticationRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+
 
 
 }

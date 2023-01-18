@@ -2,6 +2,7 @@ package app.library.user;
 
 import app.library.models.AuthenticationRequest;
 import app.library.models.AuthenticationResponse;
+import app.library.models.RegistrationRequest;
 import app.library.usermgmt.MyUserDetails;
 import app.library.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -25,10 +28,11 @@ public class UserService {
     @Autowired
     private JwtUtil jwtUtil;
 
-    public void createUser(AuthenticationRequest authenticationRequest){
+    public void createUser(RegistrationRequest registrationRequest){
         User user = new User();
-        user.setUserName(authenticationRequest.getUsername());
-        user.setPassword(authenticationRequest.getPassword());
+        user.setUserName(registrationRequest.getUsername());
+        user.setPassword(registrationRequest.getPassword());
+        user.setName(registrationRequest.getName());
         user.setRoles("USER");
         user.setActive(true);
         userRepository.save(user);
@@ -42,10 +46,13 @@ public class UserService {
             throw new Exception("Incorrect username or password", e);
         }
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final Optional<User> user =userRepository.findByUserName(authenticationRequest.getUsername());
 
-        final String Jwt = jwtUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new AuthenticationResponse(Jwt));
+         String Jwt = jwtUtil.generateToken(userDetails);
+
+
+        return ResponseEntity.ok(new AuthenticationResponse(Jwt,user.get()));
     }
 
 }

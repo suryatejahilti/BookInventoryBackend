@@ -2,6 +2,7 @@ package app.library.user;
 
 import app.library.models.AuthenticationRequest;
 import app.library.models.AuthenticationResponse;
+import app.library.models.RegistrationRequest;
 import app.library.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +29,9 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
-            userService.createUser(authenticationRequest);
-            return userService.loginUser(authenticationRequest);
+    public ResponseEntity<?> registerUser(@RequestBody RegistrationRequest registrationRequest) throws Exception {
+            userService.createUser(registrationRequest);
+            return userService.loginUser(new AuthenticationRequest(registrationRequest));
     }
 
     @PostMapping("/login")

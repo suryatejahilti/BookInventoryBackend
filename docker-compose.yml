@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      - ZOO_ENABLE_AUTH=yes
+      - ZOO_SERVER_USERS=kafka
+      - ZOO_SERVER_PASSWORDS=secret
+      - ZOO_CLIENT_USER=kafka
+      - ZOO_CLIENT_PASSWORD=secret
+  kafka:
+    image: 'bitnami/kafka:2.8.1'
+    ports:
+      - '9093:9093'
+    environment:
+      - ALLOW_PLAINTEXT_LISTENER=no
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,CLIENT://:9093,
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka:9092,CLIENT://localhost:9093
+      - KAFKA_INTER_BROKER_LISTENER_NAME=INTERNAL
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:SASL_PLAINTEXT,CLIENT:SASL_PLAINTEXT
+      - KAFKA_CFG_SASL_MECHANISM_INTER_BROKER_PROTOCOL=PLAIN
+      #Client credentials
+      - KAFKA_CLIENT_USERS=user_kafka
+      - KAFKA_CLIENT_PASSWORDS=secret
+      #Interbroker credentials
+      - KAFKA_INTER_BROKER_USER=kafka
+      - KAFKA_INTER_BROKER_PASSWORD=CMwvKfeVJociGkSToMZQ
+      #Zookeeper credentials
+      - KAFKA_ZOOKEEPER_PROTOCOL=SASL
+      - KAFKA_ZOOKEEPER_USER=kafka
+      - KAFKA_ZOOKEEPER_PASSWORD=secret
+    depends_on:
+      - zookeeper

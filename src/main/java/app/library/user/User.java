@@ -10,9 +10,19 @@ public class User {
     @Column(name = "id", nullable = false)
     private Long id;
     private String userName;
+
+    private String name;
     private String password;
     private boolean active;
     private String roles;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;
