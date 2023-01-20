@@ -1,10 +1,12 @@
 package app.library.user;
 
+import app.library.book.Book;
 import app.library.models.AuthenticationRequest;
 import app.library.models.AuthenticationResponse;
 import app.library.models.RegistrationRequest;
 import app.library.usermgmt.MyUserDetails;
 import app.library.util.JwtUtil;
+import org.apache.kafka.common.quota.ClientQuotaAlteration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service

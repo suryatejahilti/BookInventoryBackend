@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class KafkaProducer {
-    /*
+
     private static final org.slf4j.Logger LOGGER =  LoggerFactory.getLogger(KafkaProducer.class);
     private KafkaTemplate<String,String> kafkaTemplate;
 
@@ -18,6 +18,6 @@ public class KafkaProducer {
         LOGGER.info(String.format("message sent %s",message));
         kafkaTemplate.send("books",message);
     }
-`*/
+
 
 }

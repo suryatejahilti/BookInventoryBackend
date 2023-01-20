@@ -7,9 +7,10 @@ import org.springframework.kafka.config.TopicBuilder;
 
 @Configuration
 public class KafkaTopicConfig {
-    /*
+
     @Bean
-    public NewTopic booklibrary(){
+    public NewTopic booklibrary() {
         return TopicBuilder.name("books").partitions(10).build();
-    }*/
+
+    }
 }

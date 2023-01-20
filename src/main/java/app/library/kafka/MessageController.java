@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MessageController {
-    /*
+
     @Autowired
     private KafkaProducer kafkaProducer;
 
@@ -20,5 +20,5 @@ public class MessageController {
         kafkaProducer.sendMessage(message);
         return ResponseEntity.ok("message sent to the topic");
     }
-     */
+
 }

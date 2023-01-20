@@ -21,6 +21,17 @@ public class BookApplication {
 		return new RestTemplate();
 		}
 		@Bean
+		/*
+		public WebMvcConfigurer corsConfigurer() {
+			return new WebMvcConfigurer() {
+				@Override
+				public void addCorsMappings(CorsRegistry registry) {
+					registry.addMapping("/books").allowedOrigins("http://localhost:3000");
+					registry.addMapping("/login").allowedMethods("http://localhost:3000");
+				}
+			};
+		}
+		*/
 		public WebMvcConfigurer corsConfigurer() {
 			return new WebMvcConfigurerAdapter() {
 				@Override
@@ -31,5 +42,6 @@ public class BookApplication {
 				}
 			};
 		}
+
 
 }
