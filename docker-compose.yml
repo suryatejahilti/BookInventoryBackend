@@ -34,6 +34,19 @@ services:
     depends_on:
       - zookeeper
 
+  mongo:
+    image: bitnami/mongodb:4.0.14-debian-9-r24
+    ports:
+      - 27017:27017
+    environment:
+      MONGODB_ROOT_PASSWORD: password
+      MONGODB_USERNAME: admin
+      MONGODB_PASSWORD: password
+      MONGODB_DATABASE: activeTracking
+      MONGODB_REPLICA_SET_MODE: primary
+      MONGODB_REPLICA_SET_NAME: rs0
+      MONGODB_REPLICA_SET_KEY: replicasetkey123
+      MONGODB_ADVERTISED_HOSTNAME: mongo
   kafdrop:
     image: obsidiandynamics/kafdrop
     container_name: kafdrop

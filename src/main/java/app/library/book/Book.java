@@ -14,7 +14,8 @@ public class Book {
     String title;
     @Column(name="author")
     String author;
-    @Column(name="description")
+    @Column(name="description",length=10485760)
+
     String description;
     @Column(name="price")
     long price;
