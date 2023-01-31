@@ -1,68 +1,49 @@
 package app.library.book;
 
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+import app.library.googlebooks.GoogleBooks;
+import app.library.googlebooks.GoogleBooksWrapper;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
 
-@Entity
-@Table(name="lib")
+@Document(collection = "lib")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Book {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    long bookid;
-    @Column(name="title")
-    String title;
-    @Column(name="author")
-    String author;
-    @Column(name="description",length=10485760)
+    @MongoId
+    @Field("_id")
+    String bookId;
 
+    @Field(name="title")
+    String title;
+
+    @Field(name="author")
+    String author;
+
+    @Field(name="description")
     String description;
-    @Column(name="price")
+
+    @Field(name="price")
     long price;
-    @Column(name="quantity")
+
+    @Field(name="quantity")
     long quantity;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public long getBookid() {
-        return bookid;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public long getPrice() {
-        return price;
-    }
-
-    public void setPrice(long price) {
-        this.price = price;
-    }
-
-    public long getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
+    public Book(GoogleBooksWrapper googleBooksWrapper) throws Exception {
+        try {
+            this.title=googleBooksWrapper.getVolumeInfo().getTitle();
+            this.description=googleBooksWrapper.getVolumeInfo().getDescription();
+            this.author=googleBooksWrapper.getVolumeInfo().getAuthors()[0];
+        }
+        catch (Exception err){
+            throw new Exception("values are missing from the book",err);
+        }
     }
 }

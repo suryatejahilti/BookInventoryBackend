@@ -1,9 +1,18 @@
 package app.library.user;
 
-import javax.persistence.*;
+import app.library.models.RegistrationRequest;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import javax.persistence.*;
+//change the string user to the constant
 @Entity
+@Getter
+@Setter
 @Table(name="users")
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,47 +30,11 @@ public class User {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public User(RegistrationRequest registrationRequest) {
+        this.userName = registrationRequest.getUsername();
+        this.name = registrationRequest.getPassword();
+        this.password = registrationRequest.getName();
+        this.active = true;
+        this.roles = "USER";
     }
 }

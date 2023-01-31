@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
+//cannot user getter and setter because it implements the interface
 public class MyUserDetails implements UserDetails {
     private String userName;
     private String password;

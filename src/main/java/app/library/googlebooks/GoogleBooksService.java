@@ -3,39 +3,11 @@ package app.library.googlebooks;
 import app.library.book.Book;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+
 @Service
-public class GoogleBooksService {
+public interface GoogleBooksService {
 
-    public List<Book> getmodifiedbooks(GoogleBooks googlebooks) {
-        List<GoogleBooksWrapper> googlebookitems=googlebooks.getItems();
-
-        List<Book> bookslist = new ArrayList<>();
-        for (GoogleBooksWrapper googleBooksWrapper : googlebookitems){
-            Book book=new Book();
-            try {
-                book.setTitle(googleBooksWrapper.getVolumeInfo().getTitle());
-            }
-            catch (Exception err){
-
-            }
-            try{
-                book.setAuthor(googleBooksWrapper.getVolumeInfo().getAuthors()[0]);
-            }
-            catch (Exception err){
-
-            }
-            try{
-                book.setDescription(googleBooksWrapper.getVolumeInfo().getDescription());
-            }
-            catch (Exception err){
-
-            }
-
-
-            bookslist.add(book);
-        }
-        return bookslist;
-    }
+    public List<Book> getModifiedBooks(GoogleBooks googlebooks) throws Exception;
+    public List<Book> getBooks(String searchid) throws Exception;
 }

@@ -1,6 +1,7 @@
 package app.library.usermgmt;
 
 import app.library.user.User;
+import app.library.user.UserDao;
 import app.library.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,11 +14,11 @@ import java.util.Optional;
 @Service
 public class MyUserDetailsService implements UserDetailsService {
     @Autowired
-    UserRepository userRepository;
+    UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-            Optional<User> user= userRepository.findByUserName(username);
+            Optional<User> user= userDao.findByUserName(username);
             user.orElseThrow(()-> new UsernameNotFoundException("Not found : "+ username));
 
             return user.map(MyUserDetails::new).get();

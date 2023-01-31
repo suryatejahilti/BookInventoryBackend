@@ -1,33 +1,21 @@
 package app.library.models;
 
 import app.library.user.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-import java.util.List;
+import java.util.Optional;
 
+@Getter
+@Setter
+@AllArgsConstructor
 public class AuthenticationResponse {
     private final String accessToken;
     private String roles;
     private String name;
 
-    public String getAccessToken() {
-        return accessToken;
-    }
-
-    public String getRoles() {
-        return roles;
-    }
-
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
 
 
