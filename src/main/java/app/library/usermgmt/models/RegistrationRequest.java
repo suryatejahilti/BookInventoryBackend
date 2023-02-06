@@ -1,6 +1,5 @@
-package app.library.book.models;
+package app.library.usermgmt.models;
 
-import app.library.book.Entity.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookRequest {
+public class RegistrationRequest {
 
-    private Book book;
-    private String user;
-
-
+    private String username;
+    private String name;
+    private String password;
 
 }

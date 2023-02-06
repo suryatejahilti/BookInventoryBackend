@@ -1,7 +1,6 @@
 package app.library.filters;
 
-import app.library.usermgmt.MyUserDetails;
-import app.library.usermgmt.MyUserDetailsService;
+import app.library.usermgmt.authmgmt.MyUserDetailsService;
 import app.library.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

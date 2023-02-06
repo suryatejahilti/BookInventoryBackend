@@ -1,6 +1,5 @@
 package app.library.book.models;
 
-import app.library.book.Entity.Book;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookRequest {
+public class BookIdRequest {
 
-    private Book book;
+    private String bookid;
     private String user;
-
-
-
 }
