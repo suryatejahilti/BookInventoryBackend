@@ -50,7 +50,7 @@ class BookControllerTest {
 
     @Test
     void testGetBookById() throws Exception {
-        Book book = new Book("42","Good Book","Surya","The characteristics of someone or something",1L,1L);
+        Book book = new Book("42", "Good Book", "Surya", "The characteristics of someone or something", 1L, 1L);
         when(bookServiceImpl.getBookById((BookIdRequest) any())).thenReturn(book);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/books/{bookId}/{user}", "42", "User");
         MockMvcBuilders.standaloneSetup(bookController)
@@ -69,7 +69,7 @@ class BookControllerTest {
     void testAddBook() throws Exception {
         doNothing().when(bookServiceImpl).addBook((BookRequest) any());
 
-        Book book = new Book("42","Good Book","Surya","The characteristics of someone or something",1L,1L);
+        Book book = new Book("42", "Good Book", "Surya", "The characteristics of someone or something", 1L, 1L);
 
         BookRequest bookRequest = new BookRequest();
         bookRequest.setBook(book);
@@ -89,7 +89,7 @@ class BookControllerTest {
     void testUpdateBook() throws Exception {
         doNothing().when(bookServiceImpl).updateBook((BookRequest) any());
 
-        Book book = new Book("42","Good Book","Surya","The characteristics of someone or something",1L,1L);
+        Book book = new Book("42", "Good Book", "Surya", "The characteristics of someone or something", 1L, 1L);
 
         BookRequest bookRequest = new BookRequest();
         bookRequest.setBook(book);
@@ -104,14 +104,15 @@ class BookControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
-
     @Test
     void testDeleteBook() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/books/42/{user}", "User");
-        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(bookController)
+        doNothing().when(bookServiceImpl).deleteBook((BookIdRequest) any());
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/books/{bookId}/{user}", "42",
+                "User");
+        MockMvcBuilders.standaloneSetup(bookController)
                 .build()
-                .perform(requestBuilder);
-        actualPerformResult.andExpect(MockMvcResultMatchers.status().is(500));
+                .perform(requestBuilder)
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
 
