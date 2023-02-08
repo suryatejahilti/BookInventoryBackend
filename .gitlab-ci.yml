@@ -1,4 +1,4 @@
-image: greup2.pirod.nl:5000/raptor/gradle-jdk:jdk8
+image: adoptopenjdk:11-jdk-hotspot
 
 stages:
   - build
