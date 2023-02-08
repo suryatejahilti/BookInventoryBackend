@@ -1,27 +1,20 @@
 package app.library.util;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import app.library.usermgmt.authmgmt.MyUserDetails;
 import app.library.usermgmt.models.RegistrationRequest;
 import app.library.usermgmt.user.entity.User;
-import io.jsonwebtoken.Claims;
-
-import java.time.Instant;
-import java.util.Date;
-import java.util.function.Function;
-
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.time.Instant;
+import java.util.Date;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.*;
 
 @ContextConfiguration(classes = {JwtUtil.class})
 @ExtendWith(SpringExtension.class)
