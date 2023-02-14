@@ -1,9 +1,3 @@
-FROM openjdk:11-jre-slim
-
-EXPOSE 8080
-
-RUN mkdir /app
-
-COPY build/libs/*.jar /app/spring-boot-application.jar
-
-ENTRYPOINT ["java", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-Djava.security.egd=file:/dev/./urandom","-jar","/app/spring-boot-application.jar"]
+FROM eclipse-temurin:11.0.18_10-jdk-alpine
+COPY /build/libs/book-0.0.1-SNAPSHOT.jar book-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/book-0.0.1-SNAPSHOT.jar"]
