@@ -47,7 +47,7 @@ public class BookController {
         return new ResponseEntity<>( HttpStatus.OK );
     }
 
-    @DeleteMapping("/books/{BookId}/{user}")
+    @DeleteMapping("/books/{bookId}/{user}")
     public ResponseEntity<Void> deleteBook(@PathVariable String bookId,@PathVariable String user) throws JsonProcessingException, InvalidBookDetailsException, KafkaProducerException, InvalidBookRequest {
         bookserviceimpl.deleteBook(new BookIdRequest(bookId,user));
         return new ResponseEntity<>( HttpStatus.OK );
