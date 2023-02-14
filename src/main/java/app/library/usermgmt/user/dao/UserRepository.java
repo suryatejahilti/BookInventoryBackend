@@ -1,6 +1,7 @@
 package app.library.usermgmt.user.dao;
 
 import app.library.usermgmt.user.entity.User;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
